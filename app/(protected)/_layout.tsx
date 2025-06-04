@@ -1,17 +1,22 @@
-import { Stack } from "expo-router";
+import useAuthStore from '@/ZustandAuthStore';
+import { Redirect, Stack } from "expo-router";
 
 export default function ProtectedLayout() {
+    const { isAuthenticated } = useAuthStore();
+
+    if (!isAuthenticated) {
+        return (
+            <>
+                <Redirect href="/login" />
+            </>
+        );
+    }
     return (
-        <Stack
-            screenOptions={{
-                headerShown: false,
-                // animation: "fade",
-            }}
-        >
-            <Stack.Screen name="index" />
-            <Stack.Screen name="settings" />
-            <Stack.Screen name="profile" />
-            <Stack.Screen name="notifications" />
-        </Stack>
+        <>
+            <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+
+        </>
     );
 }
