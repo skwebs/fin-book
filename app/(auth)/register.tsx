@@ -1,3 +1,4 @@
+import { API_URL } from "@/src/constants/config";
 import useAuthStore from "@/ZustandAuthStore";
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -78,7 +79,8 @@ const RegisterScreen = () => {
 
         try {
             const response = await axios.post(
-                "https://accounting.anshumemorial.in/api/register",
+
+                `${API_URL}/api/register`,
                 {
                     name: data.name,
                     email: data.email,

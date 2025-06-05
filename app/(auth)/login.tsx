@@ -1,3 +1,4 @@
+import { API_URL } from "@/src/constants/config";
 import { saveToken } from "@/store/AuthSecureStorage";
 import useAuthStore from "@/ZustandAuthStore";
 import { Ionicons } from "@expo/vector-icons";
@@ -65,7 +66,7 @@ const LoginScreen = () => {
 
     try {
       const response = await axios.post(
-        "https://accounting.anshumemorial.in/api/login",
+        `${API_URL}/api/login`,
         data,
         {
           headers: {
@@ -209,6 +210,10 @@ const LoginScreen = () => {
                 {isSubmitting ? "Logging In..." : "Log In"}
               </Text>
             </TouchableOpacity>
+
+            <Text>
+              {API_URL}
+            </Text>
 
             <View className="mt-6">
               <TouchableOpacity
