@@ -32,28 +32,28 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(transactions)"
+        name="transaction"
         options={{
-          title: 'Transactions',
-          headerShown: false,
+          title: 'Transaction',
+          // headerShown: false,
           tabBarIcon: ({ color }) => <MaterialIcons name="currency-exchange" size={28} color={color} />,
         }}
       />
 
       <Tabs.Screen
-        name="(accounts)"
+        name="account"
         options={{
-          title: 'Accounts',
-          headerShown: false,
+          title: 'Account',
+          // headerShown: false,
           tabBarIcon: ({ color }) => <MaterialIcons name="account-box" size={28} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="(more)"
+        name="setting"
         options={{
-          title: 'More',
-          headerShown: false,
-          tabBarIcon: ({ color }) => <MaterialIcons name="more-vert" size={28} color={color} />,
+          title: 'Settings',
+          // headerShown: false,
+          tabBarIcon: ({ color }) => <MaterialIcons name="settings" size={28} color={color} />,
         }}
       />
     </Tabs>

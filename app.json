@@ -4,7 +4,7 @@
     "slug": "fin-book",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/FinBookBg.png",
+    "icon": "./assets/images/fin-book-icon.png",
     "scheme": "finbook",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/FinBook.png",
+        "foregroundImage": "./assets/images/fin-book-adaptive.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -29,7 +29,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/FinBookBg.png",
+          "image": "./assets/images/fin-book-splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
