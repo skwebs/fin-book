@@ -16,6 +16,8 @@ interface AuthState {
     clearAuth: () => void;
     _hasHydrated: boolean;
     setHasHydrated: (state: boolean) => void;
+    isLoading: boolean;
+    setIsLoading: (isLoading: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -24,11 +26,13 @@ export const useAuthStore = create<AuthState>()(
             accessToken: null,
             refreshToken: null,
             user: null,
+            isLoading: false,
             setAuth: ({ accessToken, refreshToken, user }) =>
                 set({ accessToken, refreshToken, user }),
             clearAuth: () => set({ accessToken: null, refreshToken: null, user: null }),
             _hasHydrated: false,
             setHasHydrated: (state) => set({ _hasHydrated: state }),
+            setIsLoading: (isLoading) => set({ isLoading }),
         }),
         {
             name: 'auth-storage', // Unique key for SecureStore

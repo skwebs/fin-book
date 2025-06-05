@@ -125,6 +125,16 @@ android {
     androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
     }
+    // added code for splitting the APKs by ABI
+    splits {
+        abi {
+            reset()
+            enable true
+            universalApk false
+            // include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            include "arm64-v8a"
+        }
+    }
 }
 
 // Apply static values from `gradle.properties` to the `android.packagingOptions`
