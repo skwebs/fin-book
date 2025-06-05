@@ -22,19 +22,38 @@ export default function TabLayout() {
           default: {},
         }),
       }}>
+
       <Tabs.Screen
-        name="(home)"
+        name="(dashboard)"
         options={{
-          title: 'Home',
+          title: 'Dashboard',
           headerShown: false,
           tabBarIcon: ({ color }) => <MaterialIcons name="dashboard-customize" size={28} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="transaction"
+        name="(transactions)"
         options={{
-          title: 'Transaction',
+          title: 'Transactions',
+          headerShown: false,
           tabBarIcon: ({ color }) => <MaterialIcons name="currency-exchange" size={28} color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="(accounts)"
+        options={{
+          title: 'Accounts',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <MaterialIcons name="account-box" size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="(more)"
+        options={{
+          title: 'More',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <MaterialIcons name="more-vert" size={28} color={color} />,
         }}
       />
     </Tabs>

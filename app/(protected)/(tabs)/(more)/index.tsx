@@ -3,14 +3,13 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const Home = () => {
+const More = () => {
   const router = useRouter()
   const { setAuth, clearAuth, _hasHydrated } = useAuthStore();
 
 
   return (
-    <View className='flex-1 '>
-      <Text className='text-2xl text-teal-600 font-semibold'>Home</Text>
+    <View className='flex-1 p-4'>
       <View className="mt-10 mx-4">
         <TouchableOpacity className='bg-violet-600 rounded-2xl py-4' onPress={() => {
           clearAuth();
@@ -25,4 +24,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default More
