@@ -1,6 +1,7 @@
 import { API_URL } from "@/src/constants/config";
-import { saveToken } from "@/store/AuthSecureStorage";
-import useAuthStore from "@/ZustandAuthStore";
+import { useAuthStore } from "@/src/store/authStore";
+// import { saveToken } from "@/store/AuthSecureStorage";
+// import useAuthStore from "@/ZustandAuthStore";
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
@@ -18,6 +19,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
+
 
 // Validation schema
 const loginSchema = z.object({
@@ -42,6 +44,7 @@ type ServerError = {
 };
 
 const LoginScreen = () => {
+
   const {
     control,
     handleSubmit,
@@ -57,8 +60,10 @@ const LoginScreen = () => {
   const [serverError, setServerError] = useState<ServerError>({});
   const [showPassword, setShowPassword] = useState(false);
 
+  const { setAuth, clearAuth, _hasHydrated } = useAuthStore();
+  // const { setIsAuthenticated } = useAuthStore();
+
   const router = useRouter();
-  const { setIsAuthenticated } = useAuthStore();
 
   // Handle form submission
   const onSubmit = async (data: LoginFormData) => {
@@ -77,11 +82,22 @@ const LoginScreen = () => {
       );
 
       if (response.status === 200) {
-        await saveToken(response.data.token);
-        setIsAuthenticated(true);
+        // await saveToken(response.data.token);
+        // setIsAuthenticated(true);
+        // Store tokens and user info in Zustand
+        setAuth({
+          accessToken: response.data.token,
+          refreshToken: null, // Assuming no refresh token is provided
+          user: {
+            id: response.data.user.id,
+            name: response.data.user.name,
+            email: response.data.user.email,
+          },
+        });
         router.replace("/");
       }
     } catch (error) {
+      console.error("Login error:", error);
       const err = error as AxiosError<{ errors?: ServerError; message?: string }>;
       if (err.response?.status === 422) {
         setServerError(err.response.data.errors || {});
@@ -92,6 +108,10 @@ const LoginScreen = () => {
       }
     }
   };
+
+  // if (!_hasHydrated) {
+  //   return <Text>Loading...</Text>;
+  // }
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
@@ -210,10 +230,6 @@ const LoginScreen = () => {
                 {isSubmitting ? "Logging In..." : "Log In"}
               </Text>
             </TouchableOpacity>
-
-            <Text>
-              {API_URL}
-            </Text>
 
             <View className="mt-6">
               <TouchableOpacity

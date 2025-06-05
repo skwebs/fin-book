@@ -1,22 +1,19 @@
 
-import useAuthStore from '@/ZustandAuthStore';
-import { Redirect, Stack } from 'expo-router';
+// import useAuthStore from '@/ZustandAuthStore';
+import { useAuthStore } from '@/src/store/authStore';
+import { Stack } from 'expo-router';
 import React from 'react';
 const AuthLayout = () => {
-    const { isAuthenticated } = useAuthStore();
+    // const { isAuthenticated } = useAuthStore();
+    const { accessToken } = useAuthStore();
 
-    if (isAuthenticated) {
-        return (
-            <>
-                <Redirect href="/" />
-            </>
-        );
-    }
     return (
         <Stack>
-            <Stack.Screen name="login" options={{ headerShown: false, animation: "none" }} />
-            <Stack.Screen name="register" options={{ headerShown: false, }} />
-            <Stack.Screen name="+not-found" />
+            <Stack.Protected guard={!accessToken || accessToken == null}>
+                <Stack.Screen name="login" options={{ headerShown: false, animation: "none" }} />
+                <Stack.Screen name="register" options={{ headerShown: false, }} />
+                <Stack.Screen name="+not-found" />
+            </Stack.Protected>
         </Stack>
     )
 }

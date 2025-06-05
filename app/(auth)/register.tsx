@@ -1,5 +1,5 @@
 import { API_URL } from "@/src/constants/config";
-import useAuthStore from "@/ZustandAuthStore";
+// import useAuthStore from "@/ZustandAuthStore";
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
@@ -71,7 +71,7 @@ const RegisterScreen = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const router = useRouter();
-    const { setIsAuthenticated } = useAuthStore();
+    // const { setIsAuthenticated } = useAuthStore();
 
     // Handle form submission
     const onSubmit = async (data: RegisterFormData) => {
