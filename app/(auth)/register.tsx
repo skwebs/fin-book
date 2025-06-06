@@ -311,7 +311,7 @@ const RegisterScreen = () => {
 
                         <View className="mt-6">
                             <TouchableOpacity
-                                onPress={() => router.push("/login")}
+                                onPress={() => router.back()}
                                 accessibilityLabel="Login link"
                             >
                                 <Text className="text-center text-blue-600 text-base">
