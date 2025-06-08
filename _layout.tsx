@@ -13,7 +13,6 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // headerShown: false,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
@@ -32,10 +31,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="transaction"
+        name="transactions"
         options={{
           title: 'Transaction',
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ color }) => <MaterialIcons name="currency-exchange" size={28} color={color} />,
         }}
       />
@@ -44,7 +43,7 @@ export default function TabLayout() {
         name="account"
         options={{
           title: 'Account',
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ color }) => <MaterialIcons name="account-box" size={28} color={color} />,
         }}
       />

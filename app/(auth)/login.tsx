@@ -60,7 +60,7 @@ const LoginScreen = () => {
   const [serverError, setServerError] = useState<ServerError>({});
   const [showPassword, setShowPassword] = useState(false);
 
-  const { setAuth, clearAuth, _hasHydrated } = useAuthStore();
+  const { setAuth, _hasHydrated } = useAuthStore();
   // const { setIsAuthenticated } = useAuthStore();
 
   const router = useRouter();

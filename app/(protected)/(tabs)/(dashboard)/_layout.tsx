@@ -5,7 +5,7 @@ const DashboardLayout = () => {
     return (
         <Stack>
             <Stack.Screen name="index" options={{ title: "Dashboard" }} />
-        </Stack>
+        </Stack >
     )
 }
 

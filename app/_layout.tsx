@@ -28,7 +28,7 @@ export default function RootLayout() {
     <>
       <SafeAreaProvider>
         <StatusBar style="auto" />
-        <Stack>
+        <Stack screenOptions={{ animation: 'slide_from_right' }}>
           <Stack.Screen name="(protected)" options={{ headerShown: false, animation: "none" }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false, animation: "none" }} />
           <Stack.Screen name="+not-found" />
