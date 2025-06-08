@@ -1,9 +1,24 @@
+import { Colors } from "@/src/constants/Colors";
+import { useColorScheme } from "@/src/hooks/useColorScheme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
+import { Platform } from "react-native";
 
 const TabLayout = () => {
+  const colorScheme = useColorScheme();
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarStyle: Platform.select({
+          ios: {
+            // Use a transparent background on iOS to show the blur effect
+            position: "absolute",
+          },
+          default: {},
+        }),
+      }}
+    >
       <Tabs.Screen
         name="(dashboard)"
         options={{
