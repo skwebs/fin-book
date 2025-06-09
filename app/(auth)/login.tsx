@@ -60,7 +60,7 @@ const LoginScreen = () => {
   const [serverError, setServerError] = useState<ServerError>({});
   const [showPassword, setShowPassword] = useState(false);
 
-  const { setAuth, _hasHydrated } = useAuthStore();
+  const { setAuth } = useAuthStore();
   // const { setIsAuthenticated } = useAuthStore();
 
   const router = useRouter();
@@ -82,10 +82,9 @@ const LoginScreen = () => {
       );
 
       if (response.status === 200) {
-        // await saveToken(response.data.token);
-        // setIsAuthenticated(true);
-        // Store tokens and user info in Zustand
+
         setAuth({
+          isLoggedIn: false,
           accessToken: response.data.token,
           refreshToken: null, // Assuming no refresh token is provided
           user: {

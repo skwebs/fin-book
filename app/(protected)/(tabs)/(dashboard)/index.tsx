@@ -1,12 +1,10 @@
 import { useAuthStore } from '@/src/store/authStore';
-
-import { useRouter } from 'expo-router';
 import React from 'react';
 import { Text, View } from 'react-native';
 
 const Dashboard = () => {
-  const router = useRouter()
-  const { clearAuth, _hasHydrated, user } = useAuthStore();
+
+  const { user } = useAuthStore();
 
 
   return (

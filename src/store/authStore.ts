@@ -5,10 +5,12 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 
 interface AuthState {
+    isLoggedIn: boolean;
     accessToken: string | null;
     refreshToken: string | null;
     user: { id: string; name: string; email?: string } | null;
     setAuth: (authData: {
+        isLoggedIn: boolean;
         accessToken: string | null;
         refreshToken: string | null;
         user: { id: string; name: string; email?: string } | null;
@@ -23,13 +25,14 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
     persist(
         (set) => ({
+            isLoggedIn: false,
             accessToken: null,
             refreshToken: null,
             user: null,
             isLoading: false,
             setAuth: ({ accessToken, refreshToken, user }) =>
-                set({ accessToken, refreshToken, user }),
-            clearAuth: () => set({ accessToken: null, refreshToken: null, user: null }),
+                set({ accessToken, refreshToken, user, isLoggedIn: true }),
+            clearAuth: () => set({ isLoggedIn: false, accessToken: null, refreshToken: null, user: null }),
             _hasHydrated: false,
             setHasHydrated: (state) => set({ _hasHydrated: state }),
             setIsLoading: (isLoading) => set({ isLoading }),

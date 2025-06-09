@@ -1,11 +1,14 @@
 
 import { useAuthStore } from "@/src/store/authStore";
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
 
 export default function ProtectedLayout() {
-    const { accessToken, _hasHydrated } = useAuthStore();
+    const { _hasHydrated, isLoggedIn } = useAuthStore();
+
+
+
 
     if (!_hasHydrated) {
         return (
@@ -15,10 +18,15 @@ export default function ProtectedLayout() {
         );
     }
 
+    if (!isLoggedIn) {
+        return <Redirect href="/login" />
+    }
+
+
     return (
         <>
             <Stack>
-                <Stack.Protected guard={!!accessToken || accessToken !== null}>
+                <Stack.Protected guard={isLoggedIn}>
                     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 </Stack.Protected>
             </Stack>

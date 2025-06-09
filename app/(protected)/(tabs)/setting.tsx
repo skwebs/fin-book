@@ -33,7 +33,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Settings = () => {
   const router = useRouter();
-  const { accessToken: auth, _hasHydrated, clearAuth } = useAuthStore();
+  const { isLoggedIn, _hasHydrated, clearAuth } = useAuthStore();
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [theme, setTheme] = useState('Light'); // Example theme state
 
@@ -47,7 +47,7 @@ const Settings = () => {
   }
 
   // Redirect to login if not authenticated
-  if (!auth) {
+  if (!isLoggedIn) {
     router.replace('/login');
     return null;
   }
